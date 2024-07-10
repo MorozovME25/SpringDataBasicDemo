@@ -4,12 +4,13 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.criteria.CriteriaBuilder;
 
 @Entity
 public class Lesson {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Integer id;
     private int tasks_quantity;
     private String task;
     private String difficulty;
@@ -17,7 +18,7 @@ public class Lesson {
     public int getId() {
         return id;
     }
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
     public int getTasks_quantity() {

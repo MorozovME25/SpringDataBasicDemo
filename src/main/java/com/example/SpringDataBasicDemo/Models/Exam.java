@@ -9,7 +9,7 @@ import jakarta.persistence.Id;
 public class Exam {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Integer id;
     private int tutor_id;
     private boolean result;
     private String execution_time;
@@ -18,7 +18,7 @@ public class Exam {
     public int getId() {
         return id;
     }
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
     public int getTutor_id() {
