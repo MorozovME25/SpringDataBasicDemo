@@ -10,11 +10,13 @@ public class StudentLesson extends BaseEntity {
     private Student student;
     private Lesson lesson;
     private Date executionTime;
+    private String result;
 
-    public StudentLesson(Student student, Lesson lesson, Date executionTime) {
+    public StudentLesson(Student student, Lesson lesson, Date executionTime, String result) {
         this.student = student;
         this.lesson = lesson;
         this.executionTime = executionTime;
+        this.result = result;
     }
     @ManyToOne(optional = false)
     @JoinColumn(name = "student_id", referencedColumnName = "id")
@@ -38,5 +40,13 @@ public class StudentLesson extends BaseEntity {
     }
     public void setExecutionTime(Date executionTime) {
         this.executionTime = executionTime;
+    }
+    @Column(name = "result")
+    public String getResult() {
+        return result;
+    }
+
+    public void setResult(String result) {
+        this.result = result;
     }
 }

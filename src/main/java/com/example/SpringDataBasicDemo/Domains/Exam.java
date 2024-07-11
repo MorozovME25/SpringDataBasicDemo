@@ -9,14 +9,16 @@ import java.util.Date;
 public class Exam extends BaseEntity {
     private Tutor tutor;
     private Student student;
-    private String result;
+    private String themeResult;
+    private String comment;
     private String executionTime;
     private Date date;
 
-    public Exam(Tutor tutor, Student student, String result, String executionTime, Date date) {
+    public Exam(Tutor tutor, Student student, String themeResult, String comment, String executionTime, Date date) {
         this.tutor = tutor;
         this.student = student;
-        this.result = result;
+        this.themeResult = themeResult;
+        this.comment = comment;
         this.executionTime = executionTime;
         this.date = date;
     }
@@ -40,10 +42,18 @@ public class Exam extends BaseEntity {
     }
     @Column(name = "result")
     public String getResult() {
-        return result;
+        return themeResult;
     }
-    public void setResult(String result) {
-        this.result = result;
+
+    public void setResult(String themeResult) {
+        this.themeResult = themeResult;
+    }
+    @Column(name = "comment")
+    public String getComment() {
+        return comment;
+    }
+    public void setComment(String comment) {
+        this.comment = comment;
     }
     @Column(name = "execution_time")
     public String getExecutionTime() {
