@@ -9,7 +9,6 @@ import java.util.Set;
 public class Lesson extends BaseEntity {
     private int tasksQuantity;
     private String task;
-    private String difficulty;
 
     @OneToMany(mappedBy = "student", targetEntity = StudentLesson.class,
             fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -22,7 +21,6 @@ public class Lesson extends BaseEntity {
     public Lesson(int TasksQuantity, String task, String difficulty) {
         this.tasksQuantity = TasksQuantity;
         this.task = task;
-        this.difficulty = difficulty;
     }
     protected Lesson(){}
     @Column(name = "tasks_quantity")
@@ -38,12 +36,5 @@ public class Lesson extends BaseEntity {
     }
     public void setTask(String task) {
         this.task = task;
-    }
-    @Column(name = "difficulty")
-    public String getDifficulty() {
-        return difficulty;
-    }
-    public void setDifficulty(String difficulty) {
-        this.difficulty = difficulty;
     }
 }

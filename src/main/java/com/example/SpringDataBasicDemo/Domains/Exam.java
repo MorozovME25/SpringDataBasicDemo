@@ -3,13 +3,13 @@ package com.example.SpringDataBasicDemo.Domains;
 import jakarta.persistence.*;
 
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Table(name = "exams")
 public class Exam extends BaseEntity {
     private Tutor tutor;
     private Student student;
-    private String themeResult;
     private String comment;
     private String executionTime;
     private Date date;
@@ -17,13 +17,13 @@ public class Exam extends BaseEntity {
     public Exam(Tutor tutor, Student student, String themeResult, String comment, String executionTime, Date date) {
         this.tutor = tutor;
         this.student = student;
-        this.themeResult = themeResult;
         this.comment = comment;
         this.executionTime = executionTime;
         this.date = date;
     }
 
     protected Exam(){}
+
     @ManyToOne(optional = false)
     @JoinColumn(name = "tutor_id", referencedColumnName = "id")
     public Tutor getTutorId() {
@@ -40,14 +40,10 @@ public class Exam extends BaseEntity {
     public void setStudentId(Student student){
         this.student = student;
     }
-    @Column(name = "result")
-    public String getResult() {
-        return themeResult;
-    }
 
-    public void setResult(String themeResult) {
-        this.themeResult = themeResult;
-    }
+    @OneToMany(mappedBy = "exam", targetEntity = Result.class,
+            fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Set<Result> resultForThemes;
     @Column(name = "comment")
     public String getComment() {
         return comment;
