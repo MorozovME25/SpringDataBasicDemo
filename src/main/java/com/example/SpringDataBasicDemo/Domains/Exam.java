@@ -11,10 +11,10 @@ public class Exam extends BaseEntity {
     private Tutor tutor;
     private Student student;
     private String comment;
-    private String executionTime;
+    private Float executionTime;
     private Date date;
 
-    public Exam(Tutor tutor, Student student, String themeResult, String comment, String executionTime, Date date) {
+    public Exam(Tutor tutor, Student student, String themeResult, String comment, Float executionTime, Date date) {
         this.tutor = tutor;
         this.student = student;
         this.comment = comment;
@@ -52,10 +52,10 @@ public class Exam extends BaseEntity {
         this.comment = comment;
     }
     @Column(name = "execution_time")
-    public String getExecutionTime() {
+    public Float getExecutionTime() {
         return executionTime;
     }
-    public void setExecutionTime(String executionTime) {
+    public void setExecutionTime(Float executionTime) {
         this.executionTime = executionTime;
     }
     @Column(name = "date")

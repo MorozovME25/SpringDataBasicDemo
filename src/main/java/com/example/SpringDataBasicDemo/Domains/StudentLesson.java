@@ -9,10 +9,10 @@ import java.util.Date;
 public class StudentLesson extends BaseEntity {
     private Student student;
     private Lesson lesson;
-    private Date executionTime;
+    private Float executionTime;
     private String result;
 
-    public StudentLesson(Student student, Lesson lesson, Date executionTime, String result) {
+    public StudentLesson(Student student, Lesson lesson, Float executionTime, String result) {
         this.student = student;
         this.lesson = lesson;
         this.executionTime = executionTime;
@@ -35,10 +35,10 @@ public class StudentLesson extends BaseEntity {
         this.lesson = lesson;
     }
     @Column(name = "execution_time")
-    public Date getExecutionTime() {
+    public Float getExecutionTime() {
         return executionTime;
     }
-    public void setExecutionTime(Date executionTime) {
+    public void setExecutionTime(Float executionTime) {
         this.executionTime = executionTime;
     }
     @Column(name = "result")

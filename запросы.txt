@@ -1,0 +1,47 @@
+Запрос 1
+
+SELECT DISTINCT themes.title
+FROM lesson
+JOIN lesson_theme ON lesson_theme.lesson_id = lesson.id
+JOIN themes ON themes.id = lesson_theme.theme_id
+WHERE lesson.id = {номер пройденного урока};
+
+SELECT DISTINCT lesson.id, themes.title
+FROM lesson
+JOIN lesson_theme ON lesson_theme.lesson_id = lesson.id
+JOIN themes ON themes.id = lesson_theme.theme_id
+WHERE lesson.id != {номер пройденного урока} AND themes.title IN ({данные из прошлого запроса})
+ORDER BY lesson.id;
+
+Запрос 2
+
+SELECT comment
+FROM exams
+WHERE exams.id = {номер экзамена};
+
+SELECT themes.title, results.result
+FROM exams
+JOIN results ON results.exam_id = exams.id
+JOIN themes ON themes.id = results.theme_id
+WHERE exams.id = {номер экзамена};
+
+SELECT themes.title, count(themes.title)
+FROM student_lesson
+JOIN lesson ON lesson.id = student_lesson.lesson_id
+JOIN lesson_theme ON lesson_theme.lesson_id = lesson.id
+JOIN themes ON themes.id = lesson_theme.theme_id
+WHERE student_lesson.student_id = {Ид ученика} AND student_lesson.result = 'Не сдал'
+GROUP BY themes.title
+ORDER BY count(themes.title) DESC
+LIMIT 5;
+
+Запрос 3
+
+SELECT themes.title
+FROM exams
+JOIN results ON results.exam_id = exams.id
+JOIN themes ON themes.id = results.theme_id
+WHERE date < {дата 1} AND date > {дата 1} AND NOT results.result
+GROUP BY themes.title
+ORDER BY count(themes.title) DESC
+LIMIT 5;
