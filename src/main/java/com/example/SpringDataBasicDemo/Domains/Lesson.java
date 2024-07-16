@@ -9,20 +9,37 @@ import java.util.Set;
 public class Lesson extends BaseEntity {
     private int tasksQuantity;
     private String task;
+    private Set<StudentLesson> studentLesson;
+    private Set<LessonTheme> lessonTheme;
 
-    @OneToMany(mappedBy = "student", targetEntity = StudentLesson.class,
-            fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Set<StudentLesson> studentLessons;
+    public Lesson(int tasksQuantity, String task, Set<LessonTheme> lessonTheme, Set<StudentLesson> studentLessons) {
+        this.tasksQuantity = tasksQuantity;
+        this.task = task;
+        this.lessonTheme = lessonTheme;
+        this.studentLesson = studentLessons;
+    }
+    protected Lesson(){}
 
     @OneToMany(mappedBy = "lesson", targetEntity = LessonTheme.class,
             fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Set<LessonTheme> lessonTheme;
-
-    public Lesson(int TasksQuantity, String task, String difficulty) {
-        this.tasksQuantity = TasksQuantity;
-        this.task = task;
+    public Set<LessonTheme> getLessonTheme() {
+        return lessonTheme;
     }
-    protected Lesson(){}
+
+    public void setLessonTheme(Set<LessonTheme> lessonTheme) {
+        this.lessonTheme = lessonTheme;
+    }
+
+    @OneToMany(mappedBy = "lesson", targetEntity = StudentLesson.class,
+            fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    public Set<StudentLesson> getStudentLesson() {
+        return studentLesson;
+    }
+
+    public void setStudentLesson(Set<StudentLesson> studentLessons) {
+        this.studentLesson = studentLessons;
+    }
+
     @Column(name = "tasks_quantity")
     public int getTasksQuantity() {
         return tasksQuantity;

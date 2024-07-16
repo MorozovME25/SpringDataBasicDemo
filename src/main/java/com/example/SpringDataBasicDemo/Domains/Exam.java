@@ -13,37 +13,48 @@ public class Exam extends BaseEntity {
     private String comment;
     private Float executionTime;
     private Date date;
+    private Set<Result> resultForThemes;
 
-    public Exam(Tutor tutor, Student student, String themeResult, String comment, Float executionTime, Date date) {
+    public Exam(Tutor tutor, Student student, String comment, Float executionTime, Date date, Set<Result> resultForThemes) {
         this.tutor = tutor;
         this.student = student;
         this.comment = comment;
         this.executionTime = executionTime;
         this.date = date;
+        this.resultForThemes = resultForThemes;
     }
 
     protected Exam(){}
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "tutor_id", referencedColumnName = "id")
-    public Tutor getTutorId() {
+    public Tutor getTutor() {
         return tutor;
     }
-    public void setTutorId(Tutor tutor) {
+    public void setTutor(Tutor tutor) {
         this.tutor = tutor;
     }
+
     @ManyToOne(optional = false)
     @JoinColumn(name = "student_id", referencedColumnName = "id")
-    public Student getStudentId(){
+
+    public Student getStudent() {
         return student;
     }
-    public void setStudentId(Student student){
+
+    public void setStudent(Student student) {
         this.student = student;
     }
 
     @OneToMany(mappedBy = "exam", targetEntity = Result.class,
             fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Set<Result> resultForThemes;
+    public Set<Result> getResultForThemes() {
+        return resultForThemes;
+    }
+
+    public void setResultForThemes(Set<Result> resultForThemes) {
+        this.resultForThemes = resultForThemes;
+    }
     @Column(name = "comment")
     public String getComment() {
         return comment;
