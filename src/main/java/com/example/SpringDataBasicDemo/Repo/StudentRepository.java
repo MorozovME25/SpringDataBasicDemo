@@ -1,7 +1,7 @@
 package com.example.SpringDataBasicDemo.Repo;
 
-import com.example.SpringDataBasicDemo.Domains.Student;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Component;
 
-public interface StudentRepository extends JpaRepository<Student, Integer> {
+@Component
+public interface StudentRepository {
 }

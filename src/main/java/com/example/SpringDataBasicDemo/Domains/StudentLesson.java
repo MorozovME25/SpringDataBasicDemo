@@ -10,9 +10,9 @@ public class StudentLesson extends BaseEntity {
     private Student student;
     private Lesson lesson;
     private Float executionTime;
-    private String result;
+    private boolean result;
 
-    public StudentLesson(Student student, Lesson lesson, Float executionTime, String result) {
+    public StudentLesson(Student student, Lesson lesson, Float executionTime, boolean result) {
         this.student = student;
         this.lesson = lesson;
         this.executionTime = executionTime;
@@ -51,11 +51,11 @@ public class StudentLesson extends BaseEntity {
     }
 
     @Column(name = "result")
-    public String getResult() {
+    public boolean getResult() {
         return result;
     }
 
-    public void setResult(String result) {
+    public void setResult(boolean result) {
         this.result = result;
     }
 }

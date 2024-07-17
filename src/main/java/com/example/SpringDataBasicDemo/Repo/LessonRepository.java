@@ -1,7 +1,13 @@
 package com.example.SpringDataBasicDemo.Repo;
 
-import com.example.SpringDataBasicDemo.Domains.Lesson;
-import org.springframework.data.jpa.repository.JpaRepository;
+import jakarta.persistence.TypedQuery;
+import org.springframework.stereotype.Component;
 
-public interface LessonRepository extends JpaRepository<Lesson, Integer> {
+import java.util.List;
+import java.util.Set;
+
+@Component
+public interface LessonRepository {
+     Set<Integer> getThemesIdsByLessonId (Integer lessonId);
+     List<Object[]> getLessonThemeOrderedByLessonId (Integer lessonId, Set<Integer> titlesId);
 }

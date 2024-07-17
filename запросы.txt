@@ -1,16 +1,15 @@
 Запрос 1
 
-SELECT DISTINCT themes.title
+SELECT DISTINCT lesson_theme.theme_id
 FROM lesson
 JOIN lesson_theme ON lesson_theme.lesson_id = lesson.id
-JOIN themes ON themes.id = lesson_theme.theme_id
 WHERE lesson.id = {номер пройденного урока};
 
 SELECT DISTINCT lesson.id, themes.title
 FROM lesson
 JOIN lesson_theme ON lesson_theme.lesson_id = lesson.id
 JOIN themes ON themes.id = lesson_theme.theme_id
-WHERE lesson.id != {номер пройденного урока} AND themes.title IN ({данные из прошлого запроса})
+WHERE lesson.id != {номер пройденного урока} AND lesson_theme.theme_id IN ({данные из прошлого запроса})
 ORDER BY lesson.id;
 
 Запрос 2
@@ -30,7 +29,7 @@ FROM student_lesson
 JOIN lesson ON lesson.id = student_lesson.lesson_id
 JOIN lesson_theme ON lesson_theme.lesson_id = lesson.id
 JOIN themes ON themes.id = lesson_theme.theme_id
-WHERE student_lesson.student_id = {Ид ученика} AND student_lesson.result = 'Не сдал'
+WHERE student_lesson.student_id = {Ид ученика} AND NOT student_lesson.result
 GROUP BY themes.title
 ORDER BY count(themes.title) DESC
 LIMIT 5;
