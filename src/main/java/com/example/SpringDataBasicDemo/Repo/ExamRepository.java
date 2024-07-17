@@ -1,14 +1,9 @@
 package com.example.SpringDataBasicDemo.Repo;
-import org.springframework.stereotype.Component;
 
-import java.sql.Timestamp;
-import java.util.List;
+import com.example.SpringDataBasicDemo.Domains.Exam;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-@Component
-public interface ExamRepository {
-    String getCommentByExamId (Integer examId);
-
-    List<Object[]> getThemeResultsByExamId (Integer examId);
-
-    List<String> getThemesOrderedByExamResults (Timestamp date1, Timestamp date2);
+@Repository
+public interface ExamRepository extends JpaRepository<Exam, Integer> {
 }
